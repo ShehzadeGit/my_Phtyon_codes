@@ -1,0 +1,30 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Inisialisasi variabel
+berat_asli = 1.0  # Berat asli emas batangan (dalam gram)
+error_percentage = 2  # Persentase random error (+-2%)
+n_measurements = 1000  # Jumlah pengukuran
+
+# Menghitung nilai error dalam gram
+error = berat_asli * error_percentage / 100
+
+# Menghasilkan pengukuran dengan random error
+measurements = np.random.uniform(berat_asli - error, berat_asli + error, n_measurements)
+
+# Menghitung variasi dan standar deviasi
+variasi = np.var(measurements)
+standar_deviasi = np.std(measurements)
+
+# Menampilkan hasil
+print("Hasil Pengukuran:")
+print("Rata-rata: {:.4f} gram".format(np.mean(measurements)))
+print("Varian: {:.6f} gram^2".format(variasi))
+print("Standar Deviasi: {:.6f} gram".format(standar_deviasi))
+
+# Visualisasi data
+plt.hist(measurements, bins=20, edgecolor='black')
+plt.xlabel("Berat (gram)")
+plt.ylabel("Frekuensi")
+plt.title("Distribusi Pengukuran Berat Emas Batangan")
+plt.show()
